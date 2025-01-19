@@ -7,7 +7,14 @@
     <ul>
         {% for post in posts %}
             <li>
-                <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
+                <a href="{% url 'post_detail' post.id %}">
+                    {% if post.image %}
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 200px;">
+                    {% else %}
+                        <img src="{% static 'images/placeholder.png' %}" alt="Placeholder" style="max-width: 200px;">
+                    {% endif %}
+                    {{ post.title }}
+                </a>
             </li>
         {% endfor %}
     </ul>

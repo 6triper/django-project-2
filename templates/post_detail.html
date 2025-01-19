@@ -5,4 +5,19 @@
 {% block content %}
     <h1>{{ post.title }}</h1>
     <p>{{ post.description }}</p>
+
+    {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 400px;">
+    {% else %}
+        <img src="{% static 'images/placeholder.png' %}" alt="Placeholder" style="max-width: 400px;">
+    {% endif %}
+
+    <h3>Категория: {{ post.category.name }}</h3>
+
+    <h4>Теги:</h4>
+    <ul>
+        {% for tag in post.tags.all %}
+            <li>{{ tag.name }}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
